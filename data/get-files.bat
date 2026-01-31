@@ -18,7 +18,11 @@ curl -O https://raw.githubusercontent.com/unicode-org/cldr/refs/heads/main/commo
 curl -O https://raw.githubusercontent.com/unicode-org/cldr/refs/heads/main/common/annotations/ja.xml
 curl -O https://raw.githubusercontent.com/unicode-org/unicodetools/refs/heads/main/unicodetools/data/emoji/dev/emoji-test.txt
 
+@rem https://skk-dev.github.io/dict/
+
 curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.L
-curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.geo
 curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.jinmei
+curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.geo
+curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.station
 curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.propernoun
+curl -O https://raw.githubusercontent.com/skk-dev/dict/refs/heads/master/SKK-JISYO.lisp

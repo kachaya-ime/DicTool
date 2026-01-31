@@ -18,8 +18,8 @@ import jdbm.RecordManager;
 import jdbm.RecordManagerFactory;
 
 public class GenDicSKK {
-    static String SYS_DIC_NAME = "skk_main_dic";
-    static String BTREE_NAME = "skk_tsv";
+    static String SYS_DIC_NAME = "skk_main_dict";
+    static String BTREE_NAME = "skk_dict";
 
     static RecordManager recman;
     static BTree btree;
@@ -60,13 +60,14 @@ public class GenDicSKK {
                 if (value.length() == 0) {
                     continue;
                 }
+                // 注釈があると同じ表記が複数でてしまうので消す
                 idx = value.indexOf(';');
                 if (idx > 0) {
                     value = value.substring(0, idx);
                 }
-                if (value.contains("(concat")) {
-                    continue;
-                }
+                // if (value.contains("(concat")) {
+                //     continue;
+                // }
 
                 set.add(value);
                 map.put(key, set);
@@ -91,13 +92,12 @@ public class GenDicSKK {
             LinkedHashSet<String> set = entry.getValue();
             StringBuilder sb = new StringBuilder();
             for (String value : set) {
-                if (sb.length() > 0) {
-                    sb.append("\t");
-                }
+                sb.append("/");
                 sb.append(value);
             }
+            sb.append("/");
             btree.insert(key, sb.toString(), true);
-            bw.write(key + "\t" + sb.toString() + "\n");
+            bw.write(key + " " + sb.toString() + "\n");
         }
 
         recman.commit();
@@ -113,6 +113,7 @@ public class GenDicSKK {
         readDic("./data/SKK-JISYO.geo");
         readDic("./data/SKK-JISYO.jinmei");
         readDic("./data/SKK-JISYO.propernoun");
+        readDic("./data/SKK-JISYO.station");
 
         writeDic();
 
